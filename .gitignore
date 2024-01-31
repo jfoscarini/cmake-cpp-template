@@ -1,0 +1,8 @@
+.idea
+.cache
+compile_commands.json
+cmake-build-debug
+cmake-build-release
+cmake-build-tests
+cmake-build-tests/.cache
+cmake-build-tests/compile_commands.json
