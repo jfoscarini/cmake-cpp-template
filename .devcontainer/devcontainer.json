@@ -1,0 +1,26 @@
+{
+  "name": "Ubuntu 22.04 C++ Dev",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools"
+      ]
+    }
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind"
+  ],
+  "workspaceFolder": "/workspace",
+  "runArgs": [
+    "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"
+  ],
+  "features": {},
+  "postCreateCommand": "rm -rf build && cmake -S . -B build -G Ninja"
+}
