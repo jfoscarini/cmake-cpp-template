@@ -7,7 +7,23 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake-modules)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_compile_options(-std=gnu++2b -Wall -Wextra -Wdouble-promotion -Wno-unused-parameter -Wno-unused-function -Wno-sign-conversion)
+add_compile_options(
+    -std=gnu++2b
+    -Wall
+    -Wextra
+    -Wdouble-promotion
+    -Wsign-conversion
+    -Wconversion
+    -Wmissing-field-initializers
+    -Winit-self
+    -Wshadow
+    -Wstrict-aliasing=2
+    -Wfloat-equal
+    -Wno-unused-parameter
+    -Wno-unused-function
+    # -Werror
+)
+
 include_directories(include lib)
 
 add_executable(${PROJECT_NAME}
@@ -20,13 +36,14 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
     PROJECT_VERSION_MAJOR=${PROJECT_VERSION_MAJOR}
     PROJECT_VERSION_MINOR=${PROJECT_VERSION_MINOR}
     PROJECT_VERSION_PATCH=${PROJECT_VERSION_PATCH}
+    $<$<CONFIG:Debug>:LOG_LEVEL=7>
+    $<$<CONFIG:Release>:LOG_LEVEL=-1 NDEBUG>
 )
-
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_compile_options(${PROJECT_NAME} PRIVATE -g3 -fsanitize=undefined -fsanitize-trap)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE LOG_LEVEL=7)
-elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-    target_compile_definitions(${PROJECT_NAME} PRIVATE LOG_LEVEL=-1)
-endif()
+target_compile_options(${PROJECT_NAME} PRIVATE
+    $<$<CONFIG:Debug>:-g3 -O0 -fsanitize=address,undefined -fno-omit-frame-pointer>
+)
+target_link_options(${PROJECT_NAME} PRIVATE
+    $<$<CONFIG:Debug>:-fsanitize=address,undefined>
+)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE)
