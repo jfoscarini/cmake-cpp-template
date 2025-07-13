@@ -117,4 +117,3 @@ alias debug='lldb cmake-build-debug/$(basename $PWD)' # or gdb instead of lldb
 ```
 
 These aliases simplify common development tasks such as building, running, and testing your project, promoting a more efficient and enjoyable development experience.
-

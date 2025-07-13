@@ -30,4 +30,3 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
 endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE)
-

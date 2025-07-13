@@ -3,4 +3,3 @@
 TEST_CASE("it works", "[main]") {
     CHECK(true);
 }
-
