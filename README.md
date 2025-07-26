@@ -7,6 +7,8 @@ The file `CMakeLists.txt` contains settings that I personally use -- and recomme
 ## Project Structure
 
 ```
+├── .vscode
+│   └── settings.json       # Running tests will display detailed logs only for failed tests
 ├── cmake-build-debug/      # Folder for built debug application binary
 ├── cmake-build-release/    # Folder for built release application binary
 ├── cmake-build-tests/      # Folder for built test application binaries
