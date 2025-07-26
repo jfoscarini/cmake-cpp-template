@@ -10,13 +10,13 @@ The file `CMakeLists.txt` contains settings that I personally use -- and recomme
 ├── cmake-build-debug/      # Folder for built debug application binary
 ├── cmake-build-release/    # Folder for built release application binary
 ├── cmake-build-tests/      # Folder for built test application binaries
-├── cmake-modules/          # Folder for any custom .cmake modules
+├── external/               # Folder for all external include files (like header only libraries)
+├── include/                # Folder for all local include files
 ├── lib/                    # Folder for any dependencies
-├── include/                # Folder for all include files
 ├── src/                    # Folder for all source files
 │   └── main.cpp            # Main entry of the application
-├── test/                   # Folder for all tests
-│   ├── sample.cpp          # A sample test that does nothing
+├── tests/                  # Folder for all tests
+│   ├── test_sample.cpp     # A sample test that does nothing
 │   └── CMakeLists.txt      # Test compile script
 ├── CMakeLists.txt          # Compile script
 ```
